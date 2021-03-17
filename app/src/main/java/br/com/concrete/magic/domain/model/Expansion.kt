@@ -12,4 +12,11 @@ data class Expansion(
     var releaseDate: String,
     var block: String? = null,
     var onlineOnly: Boolean
-)
+) : Comparable<Expansion> {
+    override fun compareTo(other: Expansion): Int {
+        if (this.name > other.name) return 1
+        if (this.name < other.name) return -1
+        return 0
+    }
+
+}
