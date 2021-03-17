@@ -19,7 +19,7 @@ class ExpansionsActivity : AppCompatActivity() {
 
     private lateinit var activityExpansionsBinding: ActivityExpansionsBinding
     private var mAdapter: ExpansionsAdapter? = ExpansionsAdapter()
-    private val postViewModel: ExpansionsViewModel by viewModel()
+    private val expansionsViewModel: ExpansionsViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class ExpansionsActivity : AppCompatActivity() {
         activityExpansionsBinding.postsRecyclerView.adapter = mAdapter
 
         if (isNetworkAvailable()) {
-            postViewModel.getExpansions()
+            expansionsViewModel.getExpansions()
         } else {
             Toast.makeText(
                 this,
@@ -38,7 +38,7 @@ class ExpansionsActivity : AppCompatActivity() {
             ).show()
         }
 
-        with(postViewModel) {
+        with(expansionsViewModel) {
 
             expansionsData.observe(this@ExpansionsActivity, Observer {
                 activityExpansionsBinding.postsProgressBar.visibility = GONE
