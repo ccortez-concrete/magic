@@ -7,13 +7,16 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.LENGTH_SHORT
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import br.com.concrete.magic.R
 import br.com.concrete.magic.databinding.ActivityExpansionsBinding
 import br.com.concrete.magic.utils.isNetworkAvailable
 import kotlinx.android.synthetic.main.activity_expansions.*
 import org.koin.android.viewmodel.ext.android.viewModel
+
 
 class ExpansionsActivity : AppCompatActivity() {
 
@@ -28,13 +31,20 @@ class ExpansionsActivity : AppCompatActivity() {
 
         activityExpansionsBinding.postsRecyclerView.adapter = mAdapter
 
+        val horizontalDecoration = DividerItemDecoration(
+                activityExpansionsBinding.postsRecyclerView.getContext(),
+                DividerItemDecoration.VERTICAL)
+        val horizontalDivider = ContextCompat.getDrawable(this, R.drawable.horizontal_divider)
+        horizontalDecoration.setDrawable(horizontalDivider!!)
+        activityExpansionsBinding.postsRecyclerView.addItemDecoration(horizontalDecoration)
+
         if (isNetworkAvailable()) {
             expansionsViewModel.getExpansions()
         } else {
             Toast.makeText(
-                this,
-                getString(R.string.no_internet_connection),
-                LENGTH_SHORT
+                    this,
+                    getString(R.string.no_internet_connection),
+                    LENGTH_SHORT
             ).show()
         }
 
