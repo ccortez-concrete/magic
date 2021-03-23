@@ -81,5 +81,6 @@ class ExpansionsFragment : Fragment() {
 
     companion object {
         val TAG = ExpansionsFragment::class.java.name
+        fun newInstance() = ExpansionsFragment()
     }
 }

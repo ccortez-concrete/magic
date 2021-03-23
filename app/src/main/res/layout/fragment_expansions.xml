@@ -6,14 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.posts.PostsActivity">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fundo_3"
-            android:alpha="1"/>
+            tools:context=".presentation.FragmentExpansions">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_title_expansions"
@@ -21,8 +14,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
             android:text="@string/expansions"
             android:textColor="@color/white"
             android:textSize="@dimen/headline"
