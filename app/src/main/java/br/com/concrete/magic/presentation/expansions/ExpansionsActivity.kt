@@ -52,7 +52,9 @@ class ExpansionsActivity : AppCompatActivity() {
 
             expansionsData.observe(this@ExpansionsActivity, Observer {
                 activityExpansionsBinding.postsProgressBar.visibility = GONE
-                mAdapter?.mExpansionList = it.sets
+//                mAdapter = ExpansionsAdapter(expansionsDataByIndex)
+                mAdapter?.mExpansionList = it
+
             })
 
             messageData.observe(this@ExpansionsActivity, Observer {

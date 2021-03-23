@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.concrete.magic.domain.model.ApiError
 import br.com.concrete.magic.domain.model.Expansion
+import br.com.concrete.magic.domain.model.ExpansionView
 import br.com.concrete.magic.domain.model.Root
 import br.com.concrete.magic.domain.usecase.GetExpansionsUseCase
 import br.com.concrete.magic.domain.usecase.base.UseCaseResponse
@@ -14,19 +15,20 @@ import kotlinx.coroutines.cancel
 
 class ExpansionsViewModel constructor(private val getExpansionsUseCase: GetExpansionsUseCase) : ViewModel() {
 
-    val expansionsData = MutableLiveData<Root>()
+    val expansionsData = MutableLiveData<List<ExpansionView>>()
     val showProgressbar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
+//    var expansionsDataByIndex = MutableLiveData<HashMap<String, ExpansionView>>()
 
     fun getExpansions() {
         showProgressbar.value = true
         getExpansionsUseCase.invoke(viewModelScope, null, object :
-            UseCaseResponse<Root> {
-                override fun onSuccess(result: Root) {
+            UseCaseResponse<List<ExpansionView>> {
+                override fun onSuccess(result: List<ExpansionView>) {
                     Log.i(TAG, "result: $result")
                     expansionsData.value = result
+//                    expansionsDataByIndex.value = getExpansionsUseCase.prepareExpansionViews(result)
                     showProgressbar.value = false
-                    getExpansionsByLetter(result)
                 }
 
                 override fun onError(apiError: ApiError?) {
@@ -35,28 +37,6 @@ class ExpansionsViewModel constructor(private val getExpansionsUseCase: GetExpan
                 }
             },
         )
-    }
-
-    fun getExpansionsByLetter(root: Root) {
-        val letters = Array(26) {i -> ('a' + i).toString()}
-
-        letters.forEachIndexed { index, element ->
-            println("Argument $index is $element")
-        }
-
-//        val mapExpansionsByLetter = hashMapOf<String, Expansion>()
-        var mapExpansionsByLetter : HashMap<String, Expansion>
-                = HashMap<String, Expansion> ()
-
-        root.sets.forEach {
-            mapExpansionsByLetter.put(it.name.get(0).toString(), it)
-        }
-
-        mapExpansionsByLetter.entries.forEach {
-            println("Letter ${it.key} is ${it.value.name}")
-        }
-
-
     }
 
     override fun onCleared() {
