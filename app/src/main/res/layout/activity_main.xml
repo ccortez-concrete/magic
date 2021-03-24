@@ -43,7 +43,7 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_alignParentBottom="true"
         app:elevation="4dp"
         app:itemTextColor="@drawable/selector_bottom_nav"
-        app:itemBackground="@color/light_gray"
+        app:itemBackground="@color/white"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/navigation" />
 
