@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface ApiService {
 
-    @GET("sets")
+    @GET("sets?type=expansion")
     suspend fun getExpansions(): Root
 
 }

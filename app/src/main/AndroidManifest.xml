@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:name=".MainApplication"
         android:theme="@style/Theme.MagicApplication">
-        <activity android:name=".presentation.expansions.ExpansionsActivity">
+        <activity
+            android:name=".presentation.expansions.ExpansionsActivity"
+            android:background="@drawable/main_background">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
