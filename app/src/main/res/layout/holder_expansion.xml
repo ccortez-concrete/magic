@@ -32,7 +32,7 @@
                     />
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    app:srcCompat="@drawable/ic_vector"
+                    app:srcCompat="@drawable/ic_arrow_right"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"

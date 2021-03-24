@@ -15,7 +15,7 @@
         android:theme="@style/Theme.MagicApplication">
         <activity
             android:name=".presentation.expansions.ExpansionsActivity"
-            android:background="@drawable/fundo_3">
+            android:background="@drawable/main_background">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

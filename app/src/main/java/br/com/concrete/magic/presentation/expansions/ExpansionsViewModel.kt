@@ -18,7 +18,6 @@ class ExpansionsViewModel constructor(private val getExpansionsUseCase: GetExpan
     val expansionsData = MutableLiveData<List<ExpansionView>>()
     val showProgressbar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
-//    var expansionsDataByIndex = MutableLiveData<HashMap<String, ExpansionView>>()
 
     fun getExpansions() {
         showProgressbar.value = true
@@ -27,7 +26,6 @@ class ExpansionsViewModel constructor(private val getExpansionsUseCase: GetExpan
                 override fun onSuccess(result: List<ExpansionView>) {
                     Log.i(TAG, "result: $result")
                     expansionsData.value = result
-//                    expansionsDataByIndex.value = getExpansionsUseCase.prepareExpansionViews(result)
                     showProgressbar.value = false
                 }
 
