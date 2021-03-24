@@ -13,6 +13,7 @@ buildscript {
     ext.lifecycle_viewmodel_version = "2.2.0"
     ext.support = "1.0.0"
     ext.mockwebserver = "3.8.1"
+    ext.timber = "4.7.1"
 
     repositories {
         google()
