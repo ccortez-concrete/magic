@@ -10,8 +10,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
+import androidx.viewpager2.widget.ViewPager2.ORIENTATION_VERTICAL
 import br.com.concrete.magic.R
 import br.com.concrete.magic.databinding.ActivityExpansionsBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_expansions.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -22,11 +27,23 @@ class ExpansionsActivity : AppCompatActivity() {
     private val mAdapter by lazy { ExpansionsAdapter() }
     private val expansionsViewModel: ExpansionsViewModel by viewModel()
 
+    private lateinit var tabLayout: TabLayout
+    private lateinit var viewPager: androidx.viewpager2.widget.ViewPager2
+    private val translateX get() = viewPager.orientation == ORIENTATION_VERTICAL
+    private val translateY get() = viewPager.orientation == ORIENTATION_HORIZONTAL
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityExpansionsBinding = DataBindingUtil.setContentView(this, R.layout.activity_expansions)
 
         activityExpansionsBinding.expansionsRecyclerView.adapter = mAdapter
+
+        tabLayout = findViewById(R.id.tabs)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = "ola"
+        }.attach()
+        viewPager = findViewById(R.id.view_pager)
+        viewPager.setAdapter(CustomPagerAdapter(this));
 
         val horizontalDecoration = DividerItemDecoration(
                 activityExpansionsBinding.expansionsRecyclerView.getContext(),
